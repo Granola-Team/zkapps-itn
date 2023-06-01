@@ -7,7 +7,7 @@
  */
 import { Field, Mina, PrivateKey, fetchAccount } from 'snarkyjs';
 import fs from 'fs/promises';
-import { LotsOfActions1, LotsOfActions2, /*HugeActions*/ } from '../Actions.js';
+import { LotsOfActions1 } from '../Actions.js';
 
 // check command line arg
 let alias = process.argv[2];
@@ -57,9 +57,12 @@ console.log('vk1:', vk1?.hash.toString());
 
 console.log('building transaction...');
 console.time('transaction');
-let tx1 = await Mina.transaction({ sender: feePayerAddress, fee: 0.1e9 }, () => {
-  zkApp1.dispatchLotsOfActions(Field(2));
-});
+let tx1 = await Mina.transaction(
+  { sender: feePayerAddress, fee: 0.1e9 },
+  () => {
+    zkApp1.dispatchLotsOfActions(Field(2));
+  }
+);
 console.timeEnd('transaction');
 
 console.log('proving...');
@@ -84,34 +87,3 @@ as soon as the transaction is included in a block:
 https://berkeley.minaexplorer.com/transaction/${sentTx1.hash()}
 `);
 }
-
-/**
- * update verification key
- */
-
-console.log('compiling new contract...');
-console.time('compile');
-let { verificationKey: vk2 } = await LotsOfActions2.compile();
-console.timeEnd('compile');
-
-console.log('sending transaction...');
-console.time('transaction');
-let tx2 = await Mina.transaction(zkAppAddress, () => {
-  zkApp1.account.verificationKey.set(vk2);
-});
-console.timeEnd('transaction');
-
-console.log('proving...');
-console.time('proof');
-await tx2.prove();
-console.timeEnd('proof');
-
-console.log('signing...');
-console.time('sign');
-let sentTx2 = await tx2.sign([zkAppKey]).send();
-console.timeEnd('sign');
-
-let newVK = Mina.getAccount(zkAppAddress).zkapp?.verificationKey;
-console.log('new vk:', newVK?.hash?.toString());
-
-console.assert(sentTx2.hash() === undefined, 'tx2 hash undefined');
