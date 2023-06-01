@@ -1,4 +1,51 @@
 {
   "version": 1,
-  "deployAliases": {}
+  "deployAliases": {
+    "hidden": {
+      "url": "https://proxy.berkeley.minaexplorer.com/graphql",
+      "keyPath": "keys/hidden.json",
+      "fee": "0.1",
+      "smartContract": "Hidden"
+    },
+    "circular": {
+      "url": "https://proxy.berkeley.minaexplorer.com/graphql",
+      "keyPath": "keys/circular.json",
+      "fee": "0.1",
+      "smartContract": "Circular"
+    },
+    "vars": {
+      "url": "https://proxy.berkeley.minaexplorer.com/graphql",
+      "keyPath": "keys/vars.json",
+      "fee": "0.1",
+      "smartContract": "StateVariables"
+    },
+    "actions": {
+      "url": "https://proxy.berkeley.minaexplorer.com/graphql",
+      "keyPath": "keys/actions.json",
+      "fee": "0.1",
+      "smartContract": "LotsOfActions1"
+    },
+    "huge_actions": {
+      "url": "https://proxy.berkeley.minaexplorer.com/graphql",
+      "keyPath": "keys/huge_actions.json",
+      "fee": "0.1",
+      "smartContract": "HugeActions"
+    },
+    "transfer": {
+      "url": "https://proxy.berkeley.minaexplorer.com/graphql",
+      "keyPath": "keys/transfer.json",
+      "fee": "0.1",
+      "smartContract": "Transfer"
+    },
+    "fee_payer": {
+      "url": "https://proxy.berkeley.minaexplorer.com/graphql",
+      "keyPath": "keys/fee_payer.json",
+      "fee": "0.1"
+    },
+    "fee_payer2": {
+      "url": "https://proxy.berkeley.minaexplorer.com/graphql",
+      "keyPath": "keys/fee_payer2.json",
+      "fee": "0.1"
+    }
+  }
 }

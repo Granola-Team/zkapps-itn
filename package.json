@@ -25,19 +25,19 @@
     "test": "node --experimental-vm-modules --experimental-wasm-threads node_modules/jest/bin/jest.js",
     "testw": "node --experimental-vm-modules --experimental-wasm-threads node_modules/jest/bin/jest.js --watch",
     "lint": "npx eslint src/* --fix",
-
     "test:actions": "npm run build && npm test -- Actions.test.ts",
     "test:circular": "npm run build && npm test -- Circular.test.ts",
     "test:hidden": "npm run build && npm test -- HiddenFields.test.ts",
     "test:vars": "npm run build && npm test -- StateVariables.test.ts",
     "test:transfer": "npm run build && npm test -- Transfer.test.ts",
-
     "interact:actions": "npm run build && node build/src/interactions/interact_actions.js actions",
-    "interact:circular": "npm run build && node build/src/interactions/interact_circular.js cicular",
+    "interact:circular": "npm run build && node build/src/interactions/interact_circular.js circular",
     "interact:hidden": "npm run build && node build/src/interactions/interact_hidden.js hidden",
-    "interact:vars": "npm run build && node build/src/interactions/interact_vars.js vars",
+    "interact:network": "npm run build && node build/src/interactions/interact_network.js fee_payer",
+    "interact:on-chain": "npm run build && node build/src/interactions/interact_on-chain.js",
     "interact:transfer": "npm run build && node build/src/interactions/interact_transfer.js transfer",
-    "interact:update": "npm run build && node build/src/interactions/interact_update.js actions"
+    "interact:update": "npm run build && node build/src/interactions/interact_update.js actions",
+    "interact:vars": "npm run build && node build/src/interactions/interact_vars.js vars"
   },
   "lint-staged": {
     "**/*": [
