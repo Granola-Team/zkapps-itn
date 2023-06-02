@@ -69,8 +69,7 @@ console.log('sending transaction...');
 console.time('transaction');
 let tx = await Mina.transaction({ sender: feePayerAddress, fee: 1e9 }, () => {
   zkApp.account.verificationKey.set(vk2);
-  let version = Poseidon.hash([Field(1), Field(0), Field(1)]); // 1.0.1
-  zkApp.emitEvent('verification key updated', version);
+  zkApp.account.delegate.set(feePayerAddress);
   zkApp.account.zkappUri.set('bogus uri');
 });
 console.timeEnd('transaction');
@@ -85,8 +84,8 @@ console.time('sign');
 let sentTx = await tx.sign([feePayerKey, zkAppKey]).send();
 console.timeEnd('sign');
 
-let newVK = Mina.getAccount(zkAppAddress).zkapp?.verificationKey;
-console.log('set vk:', vk2?.hash?.toString());
-console.log('new vk:', newVK?.hash?.toString());
+let currVK = Mina.getAccount(zkAppAddress).zkapp?.verificationKey;
+console.log('new vk: ', vk2?.hash?.toString());
+console.log('curr vk:', currVK?.hash?.toString());
 
 console.assert(sentTx.hash() !== undefined, 'tx hash is undefined');

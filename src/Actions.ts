@@ -36,8 +36,6 @@ export class LotsOfActions1 extends SmartContract {
       this.reducer.dispatch(multiplier.mul(i));
     }
   }
-
-  // TODO can actions be removed after being reduced?
 }
 
 export class LotsOfActions2 extends SmartContract {
@@ -265,25 +263,6 @@ export function randomHuge(): Huge {
     fields10,
   });
 }
-
-class Optional {
-  isSome: boolean;
-  value: Huge | null;
-
-  constructor(x: Huge | null) {
-    if (x === null) {
-      this.isSome = false;
-      this.value = x;
-    } else {
-      this.isSome = true;
-      this.value = x;
-    }
-  }
-}
-
-class MaybeHuge extends Struct({
-  x: Optional,
-}) {}
 
 export class HugeActions extends SmartContract {
   @state(Huge) huge = State<Huge>();

@@ -12,7 +12,7 @@ import { Hidden } from '../HiddenFields.js';
 // check command line arg
 let deployAlias = process.argv[2];
 if (!deployAlias)
-  throw Error(`Missing <network> argument.
+  throw Error(`Missing <deployAlias> argument.
 
 Usage:
 npm run interact:hidden
@@ -61,7 +61,7 @@ console.timeEnd('proof');
 
 console.log('signing...');
 console.time('sign');
-let sentTx = await tx.sign([zkAppKey]).send();
+let sentTx = await tx.sign([feePayerKey, zkAppKey]).send();
 console.timeEnd('sign');
 
 if (sentTx.hash() !== undefined) {
