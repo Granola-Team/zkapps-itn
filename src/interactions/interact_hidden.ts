@@ -15,10 +15,7 @@ if (!deployAlias)
   throw Error(`Missing <network> argument.
 
 Usage:
-node build/src/interact.js <network>
-
-Example:
-node build/src/interact.js berkeley
+npm run interact:hidden
 `);
 Error.stackTraceLimit = 1000;
 

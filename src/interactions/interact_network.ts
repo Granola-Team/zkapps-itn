@@ -10,7 +10,8 @@ import { Mina } from 'snarkyjs';
 Error.stackTraceLimit = 1000;
 
 // set up Mina instance
-const Network = Mina.Network('https://proxy.berkeley.minaexplorer.com/graphql');
+// const Network = Mina.Network('https://proxy.berkeley.minaexplorer.com/graphql');
+const Network = Mina.Network('https://berkeley.minascan.io/graphql');
 Mina.setActiveInstance(Network);
 
 // get network state info
